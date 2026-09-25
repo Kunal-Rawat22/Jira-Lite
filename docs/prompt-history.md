@@ -18,6 +18,17 @@ Each entry **must** include **Mode**: `Plan`, `Ask`, `Debug`, `Agent`, or `Plan 
 - …
 ```
 
+## 2026-09-25 — Jira-Lite constitution v1.0.0
+
+**Mode:** Agent
+
+**Prompt:** Create the project constitution for a Support Ticket Management System using Specification-Driven Development and ten listed principles (spec first, human authority, backend rules, state machine, testability, simple architecture, traceability, AI context, security, incremental implementation).
+
+**Decisions captured:**
+
+- Ratified [`.specify/memory/constitution.md`](../.specify/memory/constitution.md) as version **1.0.0**.
+- Product behavior stays in `spec/`; this file governs how work is done.
+
 ## 2026-09-25 — Project rules and Cursor rules
 
 **Mode:** Plan then Agent
