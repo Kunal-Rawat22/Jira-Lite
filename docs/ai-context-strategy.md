@@ -6,6 +6,7 @@ Load the smallest set that still prevents drift.
 
 - `README.md` — current phase (docs-only vs apps)
 - `docs/decisions.md` — standing ADRs
+- When logging prompts: `docs/prompt-history.md` (include **Mode**)
 
 ## By task
 

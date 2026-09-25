@@ -1,6 +1,6 @@
 # UI flow
 
-React + TypeScript SPA. Screens map to [api-contract.md](api-contract.md).
+Next.js (TypeScript, App Router) in `frontend/`. Screens map to [api-contract.md](api-contract.md). The current app is a home placeholder; ticket screens are Phase 3.
 
 ## Screens
 
