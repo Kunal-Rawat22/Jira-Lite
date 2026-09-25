@@ -1,3 +1,9 @@
+---
+description: Java 21 / Spring Boot layering, DTOs, validation, and state-machine rules
+globs: backend/**/*.java
+alwaysApply: false
+---
+
 # Java / Spring Boot
 
 Apply when writing or reviewing anything under `backend/`.
@@ -34,9 +40,9 @@ com.jiralite.tickets
 - State transitions must be validated by backend business logic. Do not bypass the state machine.
 - Prefer small, focused classes and methods.
 - Follow standard Java naming conventions.
-- Services own transactions (`@Transactional`), ticket keys, and [spec/state-machine.md](../spec/state-machine.md).
+- Services own transactions (`@Transactional`), ticket keys, and `spec/state-machine.md`.
 - Repositories stay as Spring Data interfaces unless a custom query is required.
-- Map entities to DTOs defined in [spec/api-contract.md](../spec/api-contract.md).
+- Map entities to DTOs defined in `spec/api-contract.md`.
 
 ## Persistence
 
@@ -47,7 +53,7 @@ com.jiralite.tickets
 ## Errors
 
 - `400` validation, `404` missing entity, `409` illegal transition or closed-ticket mutation or lock failure.
-- Match the error envelope in [api-standards.md](api-standards.md).
+- Match the error envelope in `rules/api-standards.md`.
 
 ## Forbidden
 

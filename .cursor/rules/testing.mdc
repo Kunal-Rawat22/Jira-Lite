@@ -1,6 +1,12 @@
+---
+description: JUnit 5, Mockito, Spring Boot Test, MockMvc coverage requirements
+globs: backend/src/test/**/*.java,frontend/**/*.{test,spec}.{ts,tsx}
+alwaysApply: false
+---
+
 # Testing
 
-Follow [spec/test-strategy.md](../spec/test-strategy.md). This file constrains how tests are written.
+Follow `spec/test-strategy.md`. This file constrains how tests are written.
 
 Every business rule introduced by the specification must have an appropriate automated test.
 
