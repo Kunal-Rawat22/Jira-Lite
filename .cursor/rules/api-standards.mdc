@@ -1,6 +1,12 @@
+---
+description: REST JSON API, DTOs, error envelope, query filters, and pagination
+globs: backend/**/api/**/*.java,frontend/lib/api/**/*.{ts,tsx}
+alwaysApply: false
+---
+
 # API standards
 
-Align with [spec/api-contract.md](../spec/api-contract.md).
+Align with `spec/api-contract.md`.
 
 REST API, JSON. Meaningful HTTP status codes. Consistent error responses. Bean Validation. No entity exposure.
 

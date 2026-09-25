@@ -1,3 +1,9 @@
+---
+description: Next.js frontend structure, API separation, and status-transition UX rules
+globs: frontend/**/*.{ts,tsx}
+alwaysApply: false
+---
+
 # Frontend
 
 Apply when writing or reviewing anything under `frontend/`. Stack is **Next.js (TypeScript, App Router)**.
@@ -6,7 +12,7 @@ Apply when writing or reviewing anything under `frontend/`. Stack is **Next.js (
 
 - `app/` — routes (`page.tsx`, layouts)
 - `app/` ticket routes later: `/`, `/tickets/new`, `/tickets/[id]`
-- `lib/api` (when added) — typed client for [spec/api-contract.md](../spec/api-contract.md)
+- `lib/api` (when added) — typed client for `spec/api-contract.md`
 - `lib/types` — enums and DTOs matching the API (do not drift)
 
 ## TypeScript
@@ -25,7 +31,7 @@ Apply when writing or reviewing anything under `frontend/`. Stack is **Next.js (
 
 ## UI rules
 
-- Implement screens in [spec/ui-flow.md](../spec/ui-flow.md) in Phase 3.
+- Implement screens in `spec/ui-flow.md` in Phase 3.
 - Status dropdown may hide illegal targets for UX, but the client graph is not the source of truth. Always surface API `message` on 400/409; do not swallow errors.
 - Hide comment composer and disable field edits when status is `CLOSED`, except reopen.
 

@@ -18,6 +18,17 @@ Each entry **must** include **Mode**: `Plan`, `Ask`, `Debug`, `Agent`, or `Plan 
 - …
 ```
 
+## 2026-09-25 — Project rules and Cursor rules
+
+**Mode:** Plan then Agent
+
+**Prompt:** Add testing, Java/Spring Boot, API, and frontend rules in `rules/*.md`, then create Cursor project rules from those markdown files.
+
+**Decisions captured:**
+
+- Merged requested bullets into existing `rules/` docs without dropping Jira-Lite specifics.
+- Cursor rules live in `.cursor/rules/*.mdc` with file globs; git rule always applies.
+
 ## 2026-09-25 — JRL-n commits, review commands, branch PR
 
 **Mode:** Plan then Agent

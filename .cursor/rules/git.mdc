@@ -1,0 +1,40 @@
+---
+description: JRL commit messages, what not to commit, and branch/push rules
+alwaysApply: true
+---
+
+# Git
+
+## Commit messages
+
+Match existing history (`JRL-1: initialize project structure`):
+
+```
+JRL-<ticket>: <imperative summary>
+```
+
+Examples:
+
+- `JRL-2: add spring boot next.js stack and git commands`
+- `JRL-3: implement ticket status transitions`
+
+Rules:
+
+- Ticket prefix is `JRL-` plus the integer (next unused number if there is no ticket).
+- Imperative, lowercase after the colon, no trailing period.
+- Subject line only unless the why needs one extra sentence in the body.
+- Do not list every file in the subject.
+
+## What not to commit
+
+- `.env`, credentials, API keys, private keys
+- `node_modules/`, `frontend/.next/`, `backend/build/`, `backend/.gradle/`
+- Local IDE noise already in `.gitignore`
+
+## Branch and push
+
+- Default: feature branch (`cursor/jrl-<n>-<summary>`), never commit directly to `main` unless the user insists.
+- Push only when the user asks. `git push -u origin HEAD`. No `--force` to `main`. No `--no-verify`.
+- Open a PR into `main` after push when the user asked for GitHub.
+
+When committing, follow `commands/commit-and-push.md`.
