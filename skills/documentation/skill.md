@@ -24,7 +24,8 @@ Any change to ticket fields, statuses, endpoints, UI screens, or coding rules.
 
 - If you change a status name, enum, or path, update **every** spec file that mentions it in the same change.
 - Do not add API routes in code before `spec/api-contract.md`.
-- Append `docs/prompt-history.md` when a prompt produced a structural or product decision.
+- Append `docs/prompt-history.md` when a prompt produced a structural or product decision. Every entry must include **Mode** (`Plan`, `Ask`, `Debug`, `Agent`, or `Plan then Agent`) using the template at the top of that file.
+- Git commits use `JRL-<n>: <imperative summary>` ([rules/git.md](../../rules/git.md)).
 - Add an ADR-style entry in `docs/decisions.md` when layout, stack, or MVP scope changes.
 - Never put secrets, tokens, or real passwords in spec or docs.
 

@@ -3,12 +3,12 @@
 ## System shape
 
 ```
-[React + TypeScript SPA] --REST/JSON--> [Spring Boot API] --JPA--> [PostgreSQL]
+[Next.js TypeScript App Router] --REST/JSON--> [Spring Boot API] --JPA--> [PostgreSQL]
 ```
 
-- **Frontend**: single-page app in `frontend/` (not scaffolded yet). Talks only to the API; no direct DB access.
-- **Backend**: Spring Boot in `backend/` (not scaffolded yet). Layered: controller → service → repository.
-- **Database**: PostgreSQL 16, started via root `docker-compose.yml`.
+- **Frontend**: Next.js (TypeScript, App Router) in `frontend/`. Talks only to the API via `/api` rewrites; no direct DB access.
+- **Backend**: Spring Boot 3.4 (Java 21, Gradle) in `backend/`. Layered: controller → service → repository. Skeleton is in place (health + JPA/Postgres config); ticket APIs come later.
+- **Database**: PostgreSQL 15 via root `docker-compose.yml`, database name `support_ticket`.
 
 ## Backend layers
 
@@ -31,12 +31,15 @@ No auth filter. Clients send user ids in request bodies (`reporterId`, `authorId
 
 ## Persistence
 
-- Single Postgres database `tickets`.
-- Flyway (or Liquibase) when the backend is implemented; schema matches [data-model.md](data-model.md).
+- Single Postgres database `support_ticket` (Compose). Datasource URL/user/password from `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`.
+- Flyway when ticket tables are added; schema matches [data-model.md](data-model.md). Until then `ddl-auto` is `none`.
 - Transactions at the service method boundary.
+
+## Compose
+
+Root `docker-compose.yml` runs Postgres, the Spring Boot API (`8080`), and Next.js (`3000`). Next.js proxies `/api/*` to the backend using `API_INTERNAL_URL`.
 
 ## Future (not this repo phase)
 
 - Spring Security
-- Backend and frontend Compose services
 - Reverse proxy / HTTPS

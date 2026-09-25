@@ -1,6 +1,8 @@
 # Jira-Lite — Support Ticket Management
 
-A spec-driven learning project for a Jira-like support ticket system. This pass is **documentation and AI workflow only**: `backend/` and `frontend/` are empty placeholders. Application code comes later, following `spec/` and `rules/`.
+A spec-driven learning project for a Jira-like support ticket system.
+
+Current code is a **skeleton**: Spring Boot API (health + Postgres config) and a Next.js home page. Ticket features follow `spec/` and `rules/`.
 
 ## Folder map
 
@@ -9,10 +11,10 @@ A spec-driven learning project for a Jira-like support ticket system. This pass 
 | `spec/` | Product and engineering source of truth |
 | `rules/` | Coding constraints for humans and AI |
 | `skills/` | Cursor skill for keeping docs in sync |
-| `commands/` | Reusable prompts (review code, review spec, generate tests) |
+| `commands/` | Prompts: review code, review spec, review PR, review code changes, generate tests, commit-and-push |
 | `docs/` | Process, prompt history, and architecture decisions |
-| `backend/` | Future Spring Boot API (empty) |
-| `frontend/` | Future React + TypeScript SPA (empty) |
+| `backend/` | Spring Boot 3.4, Java 21, Gradle |
+| `frontend/` | Next.js (TypeScript, App Router) |
 | `.specstory/history/` | Local conversation history placeholder |
 
 ## How to work
@@ -20,21 +22,34 @@ A spec-driven learning project for a Jira-like support ticket system. This pass 
 1. Change product behavior in `spec/` first (especially `requirements.md`, `data-model.md`, `api-contract.md`, `state-machine.md`).
 2. Keep `rules/` in mind when implementing.
 3. Use `commands/` prompts for reviews and test generation.
-4. Record notable choices in `docs/decisions.md` and prompts in `docs/prompt-history.md`.
+4. Record notable choices in `docs/decisions.md`. Log prompts in `docs/prompt-history.md` with **Mode** (`Plan`, `Ask`, `Debug`, `Agent`, or `Plan then Agent`).
 
 See `docs/ai-context-strategy.md` for which files to load for a given task.
 
-## Postgres (later)
+## Run
 
-When the API exists, start a local database:
+One command starts Postgres, the API, and Next.js:
 
 ```bash
-# Put POSTGRES_PASSWORD in a gitignored .env — do not commit secrets.
-docker compose up -d
+docker compose up --build
 ```
 
-Default database name and user: `tickets`. Connection details for the app will live in local env files, not in this README.
+- App: http://localhost:3000
+- API health: http://localhost:8080/actuator/health
+
+Use `--build` after code changes. Stop with `Ctrl+C`, or `docker compose up --build -d` then `docker compose down`.
+
+### Optional: run apps on the host
+
+If you prefer Gradle/npm locally (Postgres still via Compose):
+
+```bash
+docker compose up -d postgres
+cd backend && ./gradlew bootRun
+cd frontend && npm install && npm run dev
+```
 
 ## Tests
 
-There is no application code yet, so there is nothing to lint or test. After Spring Boot and React are scaffolded, follow `spec/test-strategy.md` and `rules/testing.md`.
+- Backend: `cd backend && ./gradlew test` (context load; datasource auto-config excluded so Postgres is not required).
+- Frontend: `cd frontend && npm run build`. Ticket UI tests come with Phase 3 ([spec/test-strategy.md](spec/test-strategy.md)).

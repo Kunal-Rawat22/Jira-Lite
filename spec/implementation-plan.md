@@ -4,14 +4,13 @@ Ordered phases **after** this documentation scaffold. Do not skip spec updates i
 
 ## Phase 0 — Done
 
-Repo layout, spec, rules, commands, docs, Postgres Compose only.
+Repo layout, spec, rules, commands, docs.
 
-## Phase 1 — Database and backend skeleton
+## Phase 1 — Database and backend skeleton (in progress)
 
-- Spring Boot project in `backend/` (Java 21, Spring Web, Validation, Data JPA, PostgreSQL).
-- Flyway migrations for users, tickets, comments.
-- Entities and repositories matching [data-model.md](data-model.md).
-- Health endpoint; connect to Compose Postgres via env (no secrets in git).
+- Done: Spring Boot (Java 21, Gradle) in `backend/` with Web, Validation, Data JPA, Actuator, PostgreSQL driver, Compose wiring, `/actuator/health`.
+- Done: Next.js TypeScript skeleton in `frontend/` (home page only).
+- Remaining: Flyway migrations for users, tickets, comments; entities and repositories matching [data-model.md](data-model.md).
 
 ## Phase 2 — Ticket API
 
@@ -22,14 +21,12 @@ Repo layout, spec, rules, commands, docs, Postgres Compose only.
 
 ## Phase 3 — Frontend
 
-- React + TypeScript + Vite in `frontend/`.
-- Screens in [ui-flow.md](ui-flow.md): list, create, detail, comments.
+- Ticket screens in Next.js App Router per [ui-flow.md](ui-flow.md): list, create, detail, comments.
 - Shared API client typed to the contract.
 
 ## Phase 4 — Hardening
 
 - Seed data for local demo.
-- Optional Compose services for API and SPA.
 - Then consider auth (out of current MVP).
 
 ## Dependencies

@@ -9,7 +9,7 @@ No application code exists yet. When `backend/` and `frontend/` are implemented,
 | Domain / service | JUnit 5 | State machine, key generation, closed-ticket rules |
 | API | Spring `@WebMvcTest` / `@SpringBootTest` | Contract status codes, validation, pagination |
 | Persistence | `@DataJpaTest` + Testcontainers Postgres | Constraints, indexes used by queries |
-| Frontend unit | Vitest + Testing Library | Filters, form validation, disabled closed-ticket actions |
+| Frontend unit | Next.js + Testing Library | Filters, form validation, disabled closed-ticket actions |
 | Frontend e2e (later) | Playwright | List → create → comment → status path |
 
 Prefer Testcontainers over mocking the database for repository and full API tests. Mock only outbound systems we do not have (none in MVP).
