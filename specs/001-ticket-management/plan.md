@@ -14,7 +14,7 @@ Web support-ticket app: create/list/detail, field updates, flat comments, keywor
 
 **Infra:** Docker Compose runs PostgreSQL, MongoDB, the backend container, and the frontend/Nginx container. No Redis, Kafka, or other brokers/caches.
 
-Server owns all rules; UI blocks invalid submits without calling the API and still shows server errors. Tests cover the machine, isolation, and dual validation.
+Server owns all rules; UI blocks invalid submits without calling the API and still shows server errors. Identity is username/password login and JWT `Authorization` (not `X-User-Id`). Tests cover the machine, isolation, dual validation, and FR-038 frontend cases.
 
 ## Technical Context
 
@@ -45,7 +45,7 @@ Server owns all rules; UI blocks invalid submits without calling the API and sti
 | I Specification First | Implement after this plan and `tasks.md` are human-reviewed |
 | II Human Engineering Authority | Drafts until review/merge. Feature `specs/001-*` currently **diverges** from ratified `spec/` (see research.md); do not treat this plan as replacing `spec/` until a human accepts the merge |
 | III Backend Business Rule Authority | Server validates (Bean Validation + service). UI checks do not replace server rejection |
-| IV State Machine Integrity | Status only via dedicated service operation + allowed-edge table; 409 otherwise. Controllers, repositories, and field-update DTOs MUST NOT write status |
+| IV State Machine Integrity | Status only via dedicated service operation + allowed-edge table; `INVALID_STATE_TRANSITION` otherwise. Controllers, repositories, and field-update DTOs MUST NOT write status |
 | V Testability | Table-driven transitions, isolation, empty comment/title, product on create; JUnit 5 / Mockito / MockMvc |
 | VI Simple Architecture | **Exception:** MongoDB added because the spec mandates ticket/comment/activity there. **Frontend:** React SPA + Nginx instead of constitution’s preferred Next.js App Router — stakeholder constraint for this feature (static UI + reverse proxy, no extra runtime). Redis/Kafka explicitly out |
 | VII Traceability | FRs mapped in data-model and contracts |
