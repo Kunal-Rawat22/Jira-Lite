@@ -130,4 +130,17 @@ See [decisions.md](decisions.md).
 - `application.yml` maps `spring.data.mongodb.uri` from `MONGO_URI` (localhost default for host `bootRun`). No Spring Data Mongo starter yet.
 - Backend/frontend Dockerfiles unchanged (no Mongo client in the JVM image).
 
+## 2026-09-28 — Git commit/PR workflow and preview-merge
+
+**Mode:** Plan then Agent
+
+**Prompt:** Change commit-and-push so we always pull origin main onto main, create the new branch from main, commit and push there, open a merge request, and switch back to main. Add a command to preview PRs, test them, merge into the destination branch, and pull origin to local.
+
+**Decisions captured:**
+
+- `/commit-and-push` always: stash if needed, `checkout main` + `pull origin main`, branch `cursor/jrl-<n>-…`, commit, push, `gh pr create` into `main`, `checkout main`.
+- New `/preview-merge-pr`: review diff, `./gradlew test` + `npm run build` on the PR head, `gh pr merge --merge` into the PR base, then pull that base locally.
+- GitHub PRs are the merge-request equivalent. `review-pr` remains review-only.
+
+
 

@@ -11,7 +11,7 @@ Current code is a **skeleton**: Spring Boot API (health + Postgres config) and a
 | `spec/` | Product and engineering source of truth |
 | `rules/` | Coding constraints for humans and AI |
 | `skills/` | Cursor skill for keeping docs in sync |
-| `commands/` | Prompts: review code, review spec, review PR, review code changes, generate tests, commit-and-push |
+| `commands/` | Prompts: review code, review spec, review PR, preview-merge-pr, review code changes, generate tests, commit-and-push |
 | `docs/` | Process, prompt history, and architecture decisions |
 | `backend/` | Spring Boot 3.4, Java 21, Gradle |
 | `frontend/` | Next.js (TypeScript, App Router) |
