@@ -16,7 +16,7 @@ Prove the feature after implementation. Not copy-paste application code.
 2. Create with blank title → **400**.
 3. Create without product when actor has two memberships → **400**.
 4. List as user of product X does not include product Y tickets.
-5. `GET /api/tickets` with multiple `status` and `assigneeId` → AND across groups.
+5. `POST /api/tickets/list` JSON payload with `status` and `assignee` arrays → AND across groups; empty arrays skip that filter. Response uses the envelope, not the request shape.
 6. `POST /api/tickets/{id}/status` allowed edges → **200** + activity row; CLOSED → OPEN → **409**; PATCH with `status` is not a supported contract (field PATCH does not change status).
 7. PATCH fields while CLOSED → **409**; `POST .../status` with `REOPEN` → **200**.
 8. Empty comment → **400**; comment on CLOSED → **409**; comments have no parent.

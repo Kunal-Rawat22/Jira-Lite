@@ -34,7 +34,7 @@
 
 ## State machine and status API
 
-**Decision:** Explicit allowed-edge table (or equivalent) used only by a dedicated status-change operation (e.g. `changeStatus` on the ticket service). Field-update API MUST NOT accept `status`. Illegal edges → `409`. CLOSED/CANCELLED reject field edits and comments except the published reopen transition (to `REOPEN`).
+**Decision:** Explicit allowed-edge table (or equivalent) used only by a dedicated status-change operation (e.g. `changeStatus` on the ticket service). Field-update API MUST NOT accept `status`. Illegal edges → `INVALID_STATE_TRANSITION`. CLOSED/CANCELLED reject field edits and comments except the published reopen transition (to `REOPEN`) → `TICKET_FROZEN`.
 
 **Rationale:** Constitution IV plus stakeholder “dedicated business operation”. Spec FR-012–FR-015, FR-022.
 
@@ -58,7 +58,7 @@
 
 ## List filters
 
-**Decision:** Query params as repeated ids/enums: `status`, `assigneeId`, `reporterId`, `userId` (involved), plus `q`. Combine groups with AND, values with OR. Results scoped to the actor’s product memberships.
+**Decision:** List/search is `POST /api/tickets/list` with a JSON **request payload** (`searchKey`, `status`, `assignee`, `reporter`, `product`, `user`, `size`, `page`), not GET query params. Empty arrays skip that filter. Omitted/null `searchKey` = no keyword filter; `""` accepted untrimmed; backend handles null vs empty string. Combine groups with AND, values with OR. Results scoped to the actor’s product memberships. Backend `page` zero-based; UI one-based. Page-size options are frontend-owned. No specified max `size`. List paginated, `createdAt` DESC.
 
 **Rationale:** Spec US2 / FR-008 / FR-029.
 
@@ -66,7 +66,7 @@
 
 ## Comments and activity
 
-**Decision:** Comments are a flat collection keyed by ticket id; no parentId. Activity documents written only after successful mutations (field or status).
+**Decision:** Comments are a flat collection keyed by ticket id; no parentId. Activity documents written only after successful mutations (field or status). `from`/`to` are per-field JSON maps of changed fields only.
 
 **Rationale:** Spec US5 / US4 / FR-006 / FR-031.
 
@@ -74,7 +74,7 @@
 
 ## Optimistic locking
 
-**Decision:** Ticket `version` on the Mongo document; stale field update or stale status change → `409` `OPTIMISTIC_LOCK`. Status operation requires the current version.
+**Decision:** Ticket `version` is a per-ticket integer (create = 1, +1 on success). Stale field update or stale status change → `STALE_VERSION`. Status operation requires the current version. Identity is JWT, not `X-User-Id`.
 
 **Rationale:** FR-023. JPA `@Version` does not apply to Mongo tickets.
 

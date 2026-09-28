@@ -154,6 +154,46 @@ See [decisions.md](decisions.md).
 - Companion skill `.cursor/skills/sync-spec-from-speckit/` and a pointer from `skills/documentation/skill.md`.
 - SpecStory session markdown under `.specstory/history/` is tracked (root `.gitignore` no longer ignores those dumps).
 
+## 2026-09-28 — Clarify ticket-management implementation decisions
+
+**Mode:** Agent
+
+**Prompt:** `/speckit-clarify` against Support Ticket Management: keep six statuses and FR-013; resolve search, pagination, field lengths, versioning, JWT login, assignee/roles, error envelope, stale-version UX, dedicated status API, Activity granularity, dual-store (no 2PC), filter catalogs, network errors, frontend tests, self-transitions/unknown enums. Do not implement code. Do not silently overwrite ratified `spec/`.
+
+**Decisions captured:**
+
+- Feature spec `specs/001-ticket-management/spec.md` (plus data-model and REST contract) is the working source of truth for this branch.
+- Ratified `spec/` was **not** merged; human review required before implementation.
+
+## 2026-09-28 — Clarify list payload, JWT TTL, Activity JSON, i18n
+
+**Mode:** Agent
+
+**Prompt:** `/speckit-clarify` additional decisions: JSON list/search payload (`searchKey`, filters, page/size), API zero-based vs UI one-based paging, no max page size, JWT 30 minutes, BCrypt, Activity from/to JSON, i18n messages. Do not reopen finalized lifecycle rules. Do not implement. Do not merge ratified `spec/`.
+
+**Decisions captured:**
+
+- List/search is a JSON request body distinct from the response envelope.
+- JWT TTL 30 minutes; passwords BCrypt; Activity `from`/`to` JSON; i18n from `code`.
+- Ratified `spec/` still not overwritten.
+
+## 2026-09-28 — Clarify list path, searchKey, AUTHENTICATION_FAILED, Activity maps
+
+**Mode:** Agent
+
+**Prompt:** `/speckit-clarify` remaining ambiguities: `POST /api/tickets/list`; searchKey omitted/null/empty; AUTHENTICATION_FAILED; per-field Activity from/to; frontend page-size options. Do not reopen finalized business rules. Do not merge `spec/`. Do not implement, plan, or task.
+
+**Decisions captured:**
+
+- List endpoint is `POST /api/tickets/list`.
+- `searchKey` omitted/null skip keyword filter; `""` untrimmed; backend handles null vs empty.
+- Auth failures use `AUTHENTICATION_FAILED` outside the six ticket codes.
+- Activity `from`/`to` are per-field JSON maps of changed fields only.
+- `spec/` left unmerged; feature spec remains source of truth.
+
+
+
+
 
 
 
