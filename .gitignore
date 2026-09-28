@@ -72,6 +72,3 @@ Thumbs.db
 # Docker
 postgres-data/
 
-# SpecStory local history (keep folder, ignore session dumps)
-.specstory/history/*
-!.specstory/history/.gitkeep
