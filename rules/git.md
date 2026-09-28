@@ -26,10 +26,13 @@ Rules:
 - `node_modules/`, `frontend/.next/`, `backend/build/`, `backend/.gradle/`
 - Local IDE noise already in `.gitignore`
 
-## Branch and push
+## Branch, push, and PR
 
-- Default: feature branch (`cursor/jrl-<n>-<summary>`), never commit directly to `main` unless the user insists.
-- Push only when the user asks. `git push -u origin HEAD`. No `--force` to `main`. No `--no-verify`.
-- Open a PR into `main` after push when the user asked for GitHub.
+- Never commit directly to `main` unless the user insists.
+- Always create the feature branch from a freshly pulled `origin/main`: `git checkout main`, `git pull origin main`, then `git checkout -b cursor/jrl-<n>-<summary>`. Do not branch from another feature branch.
+- Stash a dirty tree before switching to `main` when `/commit-and-push` needs a new branch. Do not commit secrets from that stash.
+- Push only when the user asks (`/commit-and-push`). `git push -u origin HEAD`. No `--force` to `main`. No `--no-verify`.
+- `/commit-and-push` always opens a GitHub pull request into `main` (`gh pr create`), then `git checkout main`.
+- Preview, test, merge, and pull with [commands/preview-merge-pr.md](../commands/preview-merge-pr.md). Merge uses `gh pr merge --merge` into the PR base. Review-only stays [commands/review-pr.md](../commands/review-pr.md).
 
 When committing, follow [commands/commit-and-push.md](../commands/commit-and-push.md).
