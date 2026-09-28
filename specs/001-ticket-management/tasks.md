@@ -53,12 +53,12 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Backend compiles; frontend is a TypeScript SPA that builds; no product APIs yet.
 
-- [ ] T001 Infrastructure: Confirm Java 21 / Spring Boot 3.x Gradle baseline and package root `com.jiralite.tickets` in `backend/build.gradle` and `backend/src/main/java/com/jiralite/tickets/TicketsApplication.java`
-- [ ] T002 Backend: Add Spring Data MongoDB, Flyway, Spring Security, and JWT libraries (no Redis/Kafka) in `backend/build.gradle`
-- [ ] T003 Backend: Create empty layer packages `api/`, `domain/`, `service/`, `persistence/`, `error/` under `backend/src/main/java/com/jiralite/tickets/`
-- [ ] T004 [P] Frontend: Replace the Next.js app with a React + TypeScript (`strict`) SPA skeleton (Vite or equivalent; no Next.js runtime) in `frontend/package.json` and `frontend/src/`
-- [ ] T005 [P] Infrastructure: Document non-secret env placeholders (`DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `MONGO_URI`, JWT secret via env) in `.env.example` (never commit real secrets)
-- [ ] T006 Backend: Keep `spring.jpa.hibernate.ddl-auto: none` and env-based Postgres/Mongo URIs in `backend/src/main/resources/application.yml`
+- [x] T001 Infrastructure: Confirm Java 21 / Spring Boot 3.x Gradle baseline and package root `com.jiralite.tickets` in `backend/build.gradle` and `backend/src/main/java/com/jiralite/tickets/TicketsApplication.java`
+- [x] T002 Backend: Add Spring Data MongoDB, Flyway, Spring Security, and JWT libraries (no Redis/Kafka) in `backend/build.gradle`
+- [x] T003 Backend: Create empty layer packages `api/`, `domain/`, `service/`, `persistence/`, `error/` under `backend/src/main/java/com/jiralite/tickets/`
+- [x] T004 [P] Frontend: Replace the Next.js app with a React + TypeScript (`strict`) SPA skeleton (Vite or equivalent; no Next.js runtime) in `frontend/package.json` and `frontend/src/`
+- [x] T005 [P] Infrastructure: Document non-secret env placeholders (`DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `MONGO_URI`, JWT secret via env) in `.env.example` (never commit real secrets)
+- [x] T006 Backend: Keep `spring.jpa.hibernate.ddl-auto: none` and env-based Postgres/Mongo URIs in `backend/src/main/resources/application.yml`
 
 ---
 
@@ -68,16 +68,16 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **⚠️ CRITICAL**: Ticket Mongo writes must validate these rows first. No user-story ticket APIs until T007–T016 exist.
 
-- [ ] T007 Database: Add Flyway config for PostgreSQL only in `backend/src/main/resources/application.yml` and `backend/src/main/resources/db/migration/`
-- [ ] T008 Database: Create `products` table (`id` UUID PK, `name` required unique, `created_at` timestamptz) in `backend/src/main/resources/db/migration/V1__products.sql`
-- [ ] T009 Database: Create `users` table (`id` UUID PK, `username` unique required, `password` BCrypt hash column, `email` unique required, `display_name` required, `created_at`) in `backend/src/main/resources/db/migration/V2__users.sql`
-- [ ] T010 Database: Create `user_product` membership table (`user_id`, `product_id` FKs, `role` required, unique `(user_id, product_id)`) in `backend/src/main/resources/db/migration/V3__user_product.sql`
-- [ ] T011 [P] Backend: Add JPA `Product` entity (`id`, `name` required unique, `createdAt` server-set) in `backend/src/main/java/com/jiralite/tickets/domain/Product.java`
-- [ ] T012 [P] Backend: Add JPA `User` entity (`id`, `username`, `password` never serialized, `email`, `displayName`, `createdAt`) in `backend/src/main/java/com/jiralite/tickets/domain/User.java`
-- [ ] T013 [P] Backend: Add JPA `UserProduct` entity and `ProductRole` enum (`PRODUCT_OWNER`, `PRODUCT_MANAGER`, `DEVELOPER`, `BA`, `QA`) in `backend/src/main/java/com/jiralite/tickets/domain/UserProduct.java` and `backend/src/main/java/com/jiralite/tickets/domain/ProductRole.java`
-- [ ] T014 [P] Backend: Add JPA repositories `ProductRepository`, `UserRepository`, `UserProductRepository` in `backend/src/main/java/com/jiralite/tickets/persistence/`
-- [ ] T015 Test: Assert Flyway creates tables and unique constraints in `backend/src/test/java/com/jiralite/tickets/persistence/FlywaySchemaTest.java`
-- [ ] T016 Database: Add local seed SQL or Flyway repeatable seed (at least one product, users, memberships; BCrypt hashes; no real secrets) in `backend/src/main/resources/db/migration/` or `backend/src/main/resources/db/seed/`
+- [x] T007 Database: Add Flyway config for PostgreSQL only in `backend/src/main/resources/application.yml` and `backend/src/main/resources/db/migration/`
+- [x] T008 Database: Create `products` table (`id` UUID PK, `name` required unique, `created_at` timestamptz) in `backend/src/main/resources/db/migration/V1__products.sql`
+- [x] T009 Database: Create `users` table (`id` UUID PK, `username` unique required, `password` BCrypt hash column, `email` unique required, `display_name` required, `created_at`) in `backend/src/main/resources/db/migration/V2__users.sql`
+- [x] T010 Database: Create `user_product` membership table (`user_id`, `product_id` FKs, `role` required, unique `(user_id, product_id)`) in `backend/src/main/resources/db/migration/V3__user_product.sql`
+- [x] T011 [P] Backend: Add JPA `Product` entity (`id`, `name` required unique, `createdAt` server-set) in `backend/src/main/java/com/jiralite/tickets/domain/Product.java`
+- [x] T012 [P] Backend: Add JPA `User` entity (`id`, `username`, `password` never serialized, `email`, `displayName`, `createdAt`) in `backend/src/main/java/com/jiralite/tickets/domain/User.java`
+- [x] T013 [P] Backend: Add JPA `UserProduct` entity and `ProductRole` enum (`PRODUCT_OWNER`, `PRODUCT_MANAGER`, `DEVELOPER`, `BA`, `QA`) in `backend/src/main/java/com/jiralite/tickets/domain/UserProduct.java` and `backend/src/main/java/com/jiralite/tickets/domain/ProductRole.java`
+- [x] T014 [P] Backend: Add JPA repositories `ProductRepository`, `UserRepository`, `UserProductRepository` in `backend/src/main/java/com/jiralite/tickets/persistence/`
+- [x] T015 Test: Assert Flyway creates tables and unique constraints in `backend/src/test/java/com/jiralite/tickets/persistence/FlywaySchemaTest.java`
+- [x] T016 Database: Add deterministic local/dev seed (idempotent/reproducible): at least one product, users, and memberships; known/deterministic UUIDs where appropriate; BCrypt password hashes; no real secrets in `backend/src/main/resources/db/migration/` or `backend/src/main/resources/db/seed/`
 
 ---
 
@@ -85,12 +85,12 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Purpose**: MongoDB owns tickets, comments, activity (FR-033). Ticket `id` UUID string. No distributed transaction.
 
-- [ ] T017 Backend: Enable Spring Data MongoDB mapping under `com.jiralite.tickets` in `backend/src/main/resources/application.yml`
-- [ ] T018 [P] Backend: Add Mongo `Ticket` document with `id`, `productId` required, `title` required 1–40 chars as submitted (no auto-trim; whitespace-only invalid), `description` optional max 1000 chars as submitted (no auto-trim), `status`, `priority`, `reporterId` required immutable, `assigneeId` required after persist, `version` integer, `createdAt`/`updatedAt` in `backend/src/main/java/com/jiralite/tickets/domain/Ticket.java`
-- [ ] T019 [P] Backend: Add Mongo `Comment` document (`id`, `ticketId` required, no parent id, `authorId`, `body` required 1–200 chars as submitted no auto-trim, whitespace-only invalid, `createdAt` immutable) in `backend/src/main/java/com/jiralite/tickets/domain/Comment.java`
-- [ ] T020 [P] Backend: Add Mongo `Activity` document (`id`, `ticketId`, `actorId`, `at`, `field`, `from`/`to` per-field JSON maps of changed fields only) in `backend/src/main/java/com/jiralite/tickets/domain/Activity.java`
-- [ ] T021 [P] Backend: Add Mongo repositories `TicketRepository`, `CommentRepository`, `ActivityRepository` in `backend/src/main/java/com/jiralite/tickets/persistence/`
-- [ ] T022 Test: Persist/load a Ticket document only (no API) in `backend/src/test/java/com/jiralite/tickets/persistence/TicketMongoRepositoryTest.java`
+- [x] T017 Backend: Enable Spring Data MongoDB mapping under `com.jiralite.tickets` in `backend/src/main/resources/application.yml`
+- [x] T018 [P] Backend: Add Mongo `Ticket` document with `id`, `productId` required, `title` required 1–40 chars as submitted (no auto-trim; whitespace-only invalid), `description` optional max 1000 chars as submitted (no auto-trim), `status`, `priority`, `reporterId` required immutable, `assigneeId` required after persist, `version` integer, `createdAt`/`updatedAt` in `backend/src/main/java/com/jiralite/tickets/domain/Ticket.java`
+- [x] T019 [P] Backend: Add Mongo `Comment` document (`id`, `ticketId` required, no parent id, `authorId`, `body` required 1–200 chars as submitted no auto-trim, whitespace-only invalid, `createdAt` immutable) in `backend/src/main/java/com/jiralite/tickets/domain/Comment.java`
+- [x] T020 [P] Backend: Add Mongo `Activity` document (`id`, `ticketId`, `actorId`, `at`, `field`, `from`/`to` per-field JSON maps of changed fields only) in `backend/src/main/java/com/jiralite/tickets/domain/Activity.java`
+- [x] T021 [P] Backend: Add Mongo repositories `TicketRepository`, `CommentRepository`, `ActivityRepository` in `backend/src/main/java/com/jiralite/tickets/persistence/`
+- [x] T022 Test: Persist/load a Ticket document only (no API) in `backend/src/test/java/com/jiralite/tickets/persistence/TicketMongoRepositoryTest.java`
 
 ---
 
@@ -100,13 +100,13 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Valid login returns JWT; bad login and missing JWT use `AUTHENTICATION_FAILED`.
 
-- [ ] T023 [US7] Backend: Configure `BCryptPasswordEncoder` (no specified cost factor) in `backend/src/main/java/com/jiralite/tickets/service/SecurityConfig.java`
-- [ ] T024 [US7] Backend: Issue JWT with 30-minute TTL from env secret in `backend/src/main/java/com/jiralite/tickets/service/JwtService.java`
-- [ ] T025 [US7] Backend: Add `LoginRequest` / login response DTOs (password never echoed) in `backend/src/main/java/com/jiralite/tickets/api/dto/LoginRequest.java`
-- [ ] T026 [US7] Backend: Implement `POST /api/auth/login` (no JWT required) in `backend/src/main/java/com/jiralite/tickets/api/AuthController.java` and `backend/src/main/java/com/jiralite/tickets/service/AuthService.java`
-- [ ] T027 [US7] Backend: Require `Authorization: Bearer <JWT>` on all `/api` routes except login; set SecurityContext from JWT in `backend/src/main/java/com/jiralite/tickets/api/JwtAuthFilter.java`
-- [ ] T028 [P] [US7] Test: MockMvc login success (200, JWT in `data`, TTL 30 minutes) and invalid credentials (401, `code`=`AUTHENTICATION_FAILED`, envelope `status`=`failed`, `data`=null); stored password remains BCrypt (not plaintext) in `backend/src/test/java/com/jiralite/tickets/api/AuthControllerTest.java`
-- [ ] T029 [P] [US7] Test: Missing/invalid JWT on a protected stub returns 401 `AUTHENTICATION_FAILED` in `backend/src/test/java/com/jiralite/tickets/api/JwtAuthFilterTest.java`
+- [x] T023 [US7] Backend: Configure `BCryptPasswordEncoder` (no specified cost factor) in `backend/src/main/java/com/jiralite/tickets/service/SecurityConfig.java`
+- [x] T024 [US7] Backend: Issue JWT with 30-minute TTL from env secret in `backend/src/main/java/com/jiralite/tickets/service/JwtService.java`
+- [x] T025 [US7] Backend: Add `LoginRequest` / login response DTOs (password never echoed) in `backend/src/main/java/com/jiralite/tickets/api/dto/LoginRequest.java`
+- [x] T026 [US7] Backend: Implement `POST /api/auth/login` (no JWT required) in `backend/src/main/java/com/jiralite/tickets/api/AuthController.java` and `backend/src/main/java/com/jiralite/tickets/service/AuthService.java`
+- [x] T027 [US7] Backend: Require `Authorization: Bearer <JWT>` on all `/api` routes except login; set SecurityContext from JWT in `backend/src/main/java/com/jiralite/tickets/api/JwtAuthFilter.java`
+- [x] T028 [P] [US7] Test: MockMvc login success (200, JWT in `data`, TTL 30 minutes) and invalid credentials (401, `code`=`AUTHENTICATION_FAILED`, envelope `status`=`failed`, `data`=null); stored password remains BCrypt (not plaintext) in `backend/src/test/java/com/jiralite/tickets/api/AuthControllerTest.java`
+- [x] T029 [P] [US7] Test: Missing/invalid JWT on a protected stub returns 401 `AUTHENTICATION_FAILED` in `backend/src/test/java/com/jiralite/tickets/api/JwtAuthFilterTest.java`
 
 ---
 
@@ -114,12 +114,12 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Purpose**: FR-035. Every response is `{ message, code, status, data }`. Backend i18n maps `code` → `message`. DTOs only; never serialize JPA/Mongo types.
 
-- [ ] T030 Backend: Add `ApiResponse<T>` (`message`, `code`, `status` `success`|`failed`, `data`) in `backend/src/main/java/com/jiralite/tickets/api/dto/ApiResponse.java`
-- [ ] T031 Backend: Add i18n message bundles keyed by result `code` (no invented fixed success copy) in `backend/src/main/resources/messages.properties` and `backend/src/main/java/com/jiralite/tickets/error/MessageResolver.java`
-- [ ] T032 Backend: Map ticket-domain codes `VALIDATION_ERROR` (400), `TICKET_NOT_FOUND` (404), `PRODUCT_ACCESS_DENIED` (403), `INVALID_STATE_TRANSITION` (409), `TICKET_FROZEN` (409), `STALE_VERSION` (409) and `AUTHENTICATION_FAILED` (401; not a ticket-domain code) in `backend/src/main/java/com/jiralite/tickets/error/ErrorCodes.java` and `backend/src/main/java/com/jiralite/tickets/error/GlobalExceptionHandler.java`
-- [ ] T033 Backend: Add shared DTOs `TicketResponse`, `CommentResponse`, `ActivityResponse`, `UserResponse` (never password), `ProductResponse`, `PageResponse` (`content`, `page`, `size`, `totalElements`, `totalPages`; `page` zero-based) in `backend/src/main/java/com/jiralite/tickets/api/dto/`
-- [ ] T034 Test: Failed and success envelopes always include `message`, `code`, `status`, `data`; error `data` is null in `backend/src/test/java/com/jiralite/tickets/error/ApiResponseEnvelopeTest.java`
-- [ ] T035 Test: Jackson serialization of controllers never includes JPA entity or Mongo document types in `backend/src/test/java/com/jiralite/tickets/api/DtoOnlySerializationTest.java`
+- [x] T030 Backend: Add `ApiResponse<T>` (`message`, `code`, `status` `success`|`failed`, `data`) in `backend/src/main/java/com/jiralite/tickets/api/dto/ApiResponse.java`
+- [x] T031 Backend: Add i18n message bundles keyed by result `code` (no invented fixed success copy) in `backend/src/main/resources/messages.properties` and `backend/src/main/java/com/jiralite/tickets/error/MessageResolver.java`
+- [x] T032 Backend: Map ticket-domain codes `VALIDATION_ERROR` (400), `TICKET_NOT_FOUND` (404), `PRODUCT_ACCESS_DENIED` (403), `INVALID_STATE_TRANSITION` (409), `TICKET_FROZEN` (409), `STALE_VERSION` (409) and `AUTHENTICATION_FAILED` (401; not a ticket-domain code) in `backend/src/main/java/com/jiralite/tickets/error/ErrorCodes.java` and `backend/src/main/java/com/jiralite/tickets/error/GlobalExceptionHandler.java`
+- [x] T033 Backend: Add shared DTOs `TicketResponse`, `CommentResponse`, `ActivityResponse`, `UserResponse` (never password), `ProductResponse`, `PageResponse` (`content`, `page`, `size`, `totalElements`, `totalPages`; `page` zero-based) in `backend/src/main/java/com/jiralite/tickets/api/dto/`
+- [x] T034 Test: Failed and success envelopes always include `message`, `code`, `status`, `data`; error `data` is null in `backend/src/test/java/com/jiralite/tickets/error/ApiResponseEnvelopeTest.java`
+- [x] T035 Test: Jackson serialization of controllers never includes JPA entity or Mongo document types in `backend/src/test/java/com/jiralite/tickets/api/DtoOnlySerializationTest.java`
 
 ---
 
@@ -129,10 +129,10 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Actor sees only products they belong to; user picker can be scoped to a membership product.
 
-- [ ] T036 Backend: Implement membership lookup (user–product, role stored but unused for assignee extra rules) in `backend/src/main/java/com/jiralite/tickets/service/MembershipService.java`
-- [ ] T037 [P] Backend: Implement JWT-protected `GET /api/products` returning `ProductResponse` list of actor memberships in `backend/src/main/java/com/jiralite/tickets/api/ProductController.java`
-- [ ] T038 [P] Backend: Implement JWT-protected `GET /api/users` for filter/assignee pickers (PostgreSQL; optionally scoped to a product the actor belongs to) in `backend/src/main/java/com/jiralite/tickets/api/UserController.java`
-- [ ] T039 Test: Non-member cannot obtain another product via `GET /api/products`; user catalog does not leak other-product-only users when scoped in `backend/src/test/java/com/jiralite/tickets/api/CatalogControllerTest.java`
+- [x] T036 Backend: Implement membership lookup (user–product, role stored but unused for assignee extra rules) in `backend/src/main/java/com/jiralite/tickets/service/MembershipService.java`
+- [x] T037 [P] Backend: Implement JWT-protected `GET /api/products` returning `ProductResponse` list of actor memberships in `backend/src/main/java/com/jiralite/tickets/api/ProductController.java`
+- [x] T038 [P] Backend: Implement JWT-protected `GET /api/users` for filter/assignee pickers (PostgreSQL; optionally scoped to a product the actor belongs to) in `backend/src/main/java/com/jiralite/tickets/api/UserController.java`
+- [x] T039 Test: Non-member cannot obtain another product via `GET /api/products`; user catalog does not leak other-product-only users when scoped in `backend/src/test/java/com/jiralite/tickets/api/CatalogControllerTest.java`
 
 **Checkpoint**: Foundation ready — ticket user stories may start.
 
@@ -142,11 +142,11 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Purpose**: Enums, constraints, service seam, dual-store read-before-write (no 2PC).
 
-- [ ] T040 [P] Backend: Add `TicketStatus` (`OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`, `CANCELLED`, `REOPEN`) and `TicketPriority` (`LOW`, `MEDIUM`, `HIGH`) in `backend/src/main/java/com/jiralite/tickets/domain/TicketStatus.java` and `backend/src/main/java/com/jiralite/tickets/domain/TicketPriority.java`
-- [ ] T041 Backend: Add Bean Validation + service rules: title required 1–40 as submitted, no auto-trim, whitespace-only invalid; description max 1000 no auto-trim; unknown priority/status → `VALIDATION_ERROR` in `backend/src/main/java/com/jiralite/tickets/api/dto/` and `backend/src/main/java/com/jiralite/tickets/service/TicketValidation.java`
-- [ ] T042 Backend: Add `TicketService` interface (create, list, get, patch fields, change status, comments, activity) in `backend/src/main/java/com/jiralite/tickets/service/TicketService.java`
-- [ ] T043 Backend: Before Mongo writes, read/validate PostgreSQL user, product, and membership (no distributed transaction) in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T044 Test: Unknown priority/status strings map to `VALIDATION_ERROR` (not `INVALID_STATE_TRANSITION`) in `backend/src/test/java/com/jiralite/tickets/service/TicketValidationTest.java`
+- [x] T040 [P] Backend: Add `TicketStatus` (`OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`, `CANCELLED`, `REOPEN`) and `TicketPriority` (`LOW`, `MEDIUM`, `HIGH`) in `backend/src/main/java/com/jiralite/tickets/domain/TicketStatus.java` and `backend/src/main/java/com/jiralite/tickets/domain/TicketPriority.java`
+- [x] T041 Backend: Add Bean Validation + service rules: title required 1–40 as submitted, no auto-trim, whitespace-only invalid; description max 1000 no auto-trim; unknown priority/status → `VALIDATION_ERROR` in `backend/src/main/java/com/jiralite/tickets/api/dto/` and `backend/src/main/java/com/jiralite/tickets/service/TicketValidation.java`
+- [x] T042 Backend: Add `TicketService` interface (create, list, get, patch fields, change status, comments, activity) in `backend/src/main/java/com/jiralite/tickets/service/TicketService.java`
+- [x] T043 Backend: Before each Mongo write, validate only the PostgreSQL data relevant to that operation (users, products, and/or memberships as needed — do not query every Postgres table for every call); no distributed transaction. Postgres owns users/products/memberships; Mongo owns tickets/comments/activity in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T044 Test: Unknown priority/status strings map to `VALIDATION_ERROR` (not `INVALID_STATE_TRANSITION`) in `backend/src/test/java/com/jiralite/tickets/service/TicketValidationTest.java`
 
 ---
 
@@ -158,19 +158,19 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 ### Tests for User Story 1
 
-- [ ] T045 [P] [US1] Test: Contract MockMvc `POST /api/tickets` 201 envelope + `TicketResponse` in `data`; rejects `reporterId`/`status` in body in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateContractTest.java`
+- [x] T045 [P] [US1] Test: Contract MockMvc `POST /api/tickets` 201 envelope + `TicketResponse` in `data`; rejects `reporterId`/`status` in body in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateContractTest.java`
 
 ### Implementation for User Story 1
 
-- [ ] T046 [US1] Backend: Add `CreateTicketRequest` (`title`, `description`, `priority` default MEDIUM, `assigneeId` nullable, `productId` nullable; no reporter/status) in `backend/src/main/java/com/jiralite/tickets/api/dto/CreateTicketRequest.java`
-- [ ] T047 [US1] Backend: Implement create: reporter=JWT; status always `OPEN` (never `REOPEN`); version=1; timestamps; omitted assignee → reporter; persist Mongo only after Postgres checks in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T048 [US1] Backend: Product rules — one membership uses that product; several require `productId` in memberships else `VALIDATION_ERROR`; zero memberships cannot create; product not a membership → `PRODUCT_ACCESS_DENIED` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T049 [US1] Backend: Reject assignee not in chosen product (`VALIDATION_ERROR`); after persist `assigneeId` never null in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T050 [US1] Backend: Expose `POST /api/tickets` (201) thin controller in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
-- [ ] T051 [P] [US1] Test: Assignee omitted → stored assignee = reporter; priority omitted → MEDIUM; illegal priority → `VALIDATION_ERROR` in `backend/src/test/java/com/jiralite/tickets/service/TicketCreateServiceTest.java`
-- [ ] T052 [P] [US1] Test: Blank/whitespace title and title > 40 / description > 1000 → `VALIDATION_ERROR` and no Mongo insert in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateValidationTest.java`
-- [ ] T053 [P] [US1] Test: Missing product with two memberships → `VALIDATION_ERROR`; single membership auto-product; unauthenticated → `AUTHENTICATION_FAILED` in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateProductTest.java`
-- [ ] T054 [US1] Test: Assignee outside product → `VALIDATION_ERROR`; reporter not taken from client body in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateAssigneeTest.java`
+- [x] T046 [US1] Backend: Add `CreateTicketRequest` (`title`, `description`, `priority` default MEDIUM, `assigneeId` nullable, `productId` nullable; no reporter/status) in `backend/src/main/java/com/jiralite/tickets/api/dto/CreateTicketRequest.java`
+- [x] T047 [US1] Backend: Implement create: reporter=JWT; status always `OPEN` (never `REOPEN`); version=1; timestamps; omitted assignee → reporter; persist Mongo only after Postgres checks in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T048 [US1] Backend: Product rules — one membership uses that product; several require `productId` in memberships else `VALIDATION_ERROR`; zero memberships cannot create; product not a membership → `PRODUCT_ACCESS_DENIED` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T049 [US1] Backend: Reject assignee not in chosen product (`VALIDATION_ERROR`); after persist `assigneeId` never null in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T050 [US1] Backend: Expose `POST /api/tickets` (201) thin controller in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
+- [x] T051 [P] [US1] Test: Assignee omitted → stored assignee = reporter; priority omitted → MEDIUM; illegal priority → `VALIDATION_ERROR` in `backend/src/test/java/com/jiralite/tickets/service/TicketCreateServiceTest.java`
+- [x] T052 [P] [US1] Test: Blank/whitespace title and title > 40 / description > 1000 → `VALIDATION_ERROR` and no Mongo insert in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateValidationTest.java`
+- [x] T053 [P] [US1] Test: Missing product with two memberships → `VALIDATION_ERROR`; single membership auto-product; unauthenticated → `AUTHENTICATION_FAILED` in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateProductTest.java`
+- [x] T054 [US1] Test: Assignee outside product → `VALIDATION_ERROR`; reporter not taken from client body in `backend/src/test/java/com/jiralite/tickets/api/TicketCreateAssigneeTest.java`
 
 **Checkpoint**: US1 independently testable via API.
 
@@ -184,19 +184,19 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 ### Tests for User Story 2
 
-- [ ] T055 [P] [US2] Test: Contract `POST /api/tickets/list` body shape; response `data` is `Page` with zero-based `page`; empty `content` still paginated in `backend/src/test/java/com/jiralite/tickets/api/TicketListContractTest.java`
+- [x] T055 [P] [US2] Test: Contract `POST /api/tickets/list` body shape; response `data` is `Page` with zero-based `page`; empty `content` still paginated in `backend/src/test/java/com/jiralite/tickets/api/TicketListContractTest.java`
 
 ### Implementation for User Story 2
 
-- [ ] T056 [US2] Backend: Add `TicketListRequest` with `searchKey`, `status`, `assignee`, `reporter`, `product`, `user`, `size`, `page` in `backend/src/main/java/com/jiralite/tickets/api/dto/TicketListRequest.java`
-- [ ] T057 [US2] Backend: Defaults page=0 size=20; apply requested `size` with no backend maximum; order `createdAt` DESC in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T058 [US2] Backend: `searchKey` omitted/null → no keyword filter; `""` accepted as provided (no trim/transform); implement null vs empty-string search check; case-insensitive substring on title and description only (not comments); multi-word allowed in `backend/src/main/java/com/jiralite/tickets/persistence/TicketRepository.java`
-- [ ] T059 [US2] Backend: Combined multi-select: groups AND, values OR; empty arrays skip that group; `user` = reporter OR assignee in set; `product` limited to actor memberships; membership hides other products even if filters ask in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T060 [US2] Backend: `POST /api/tickets/list` in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
-- [ ] T061 [P] [US2] Test: Isolation — user in X never lists Y tickets; union of X+Y for dual member in `backend/src/test/java/com/jiralite/tickets/api/TicketListIsolationTest.java`
-- [ ] T062 [P] [US2] Test: Two statuses AND assignees; empty arrays; `reporter` field name only; comments not searched in `backend/src/test/java/com/jiralite/tickets/api/TicketListFilterSearchTest.java`
-- [ ] T063 [US2] Test: Pagination page 0/1, size 20 vs custom size, empty page envelope in `backend/src/test/java/com/jiralite/tickets/api/TicketListPaginationTest.java`
-- [ ] T064 [US2] Test: Zero memberships → empty membership-scoped list (not other products) in `backend/src/test/java/com/jiralite/tickets/api/TicketListZeroMembershipTest.java`
+- [x] T056 [US2] Backend: Add `TicketListRequest` with `searchKey`, `status`, `assignee`, `reporter`, `product`, `user`, `size`, `page` in `backend/src/main/java/com/jiralite/tickets/api/dto/TicketListRequest.java`
+- [x] T057 [US2] Backend: Defaults page=0 size=20; apply requested `size` with no backend maximum; order `createdAt` DESC in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T058 [US2] Backend: `searchKey` omitted/null → no keyword filter; `""` accepted as provided (no trim/transform); implement null vs empty-string search check; case-insensitive substring on title and description only (not comments); multi-word allowed in `backend/src/main/java/com/jiralite/tickets/persistence/TicketRepository.java`
+- [x] T059 [US2] Backend: Combined multi-select: groups AND, values OR; empty arrays skip that group; `user` = reporter OR assignee in set; `product` limited to actor memberships; membership hides other products even if filters ask in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T060 [US2] Backend: `POST /api/tickets/list` in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
+- [x] T061 [P] [US2] Test: Isolation — user in X never lists Y tickets; union of X+Y for dual member in `backend/src/test/java/com/jiralite/tickets/api/TicketListIsolationTest.java`
+- [x] T062 [P] [US2] Test: Two statuses AND assignees; empty arrays; `reporter` field name only; comments not searched in `backend/src/test/java/com/jiralite/tickets/api/TicketListFilterSearchTest.java`
+- [x] T063 [US2] Test: Pagination page 0/1, size 20 vs custom size, empty page envelope in `backend/src/test/java/com/jiralite/tickets/api/TicketListPaginationTest.java`
+- [x] T064 [US2] Test: Zero memberships → empty membership-scoped list (not other products) in `backend/src/test/java/com/jiralite/tickets/api/TicketListZeroMembershipTest.java`
 
 **Checkpoint**: US2 independently testable via API.
 
@@ -208,10 +208,10 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Member sees full `TicketResponse`; non-member 403 empty data.
 
-- [ ] T065 [P] [US3] Test: Contract GET 200 / 404 / 403 envelopes in `backend/src/test/java/com/jiralite/tickets/api/TicketGetContractTest.java`
-- [ ] T066 [US3] Backend: Implement get-by-id mapping to `TicketResponse` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T067 [US3] Backend: `GET /api/tickets/{id}` in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
-- [ ] T068 [US3] Test: Non-member GET does not return ticket fields (`data` null) in `backend/src/test/java/com/jiralite/tickets/api/TicketGetIsolationTest.java`
+- [x] T065 [P] [US3] Test: Contract GET 200 / 404 / 403 envelopes in `backend/src/test/java/com/jiralite/tickets/api/TicketGetContractTest.java`
+- [x] T066 [US3] Backend: Implement get-by-id mapping to `TicketResponse` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T067 [US3] Backend: `GET /api/tickets/{id}` in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
+- [x] T068 [US3] Test: Non-member GET does not return ticket fields (`data` null) in `backend/src/test/java/com/jiralite/tickets/api/TicketGetIsolationTest.java`
 
 **Checkpoint**: US3 independently testable (comments/activity endpoints in later phases).
 
@@ -225,20 +225,21 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 ### Tests for User Story 4
 
-- [ ] T069 [P] [US4] Test: Contract PATCH body (version, title, description, priority, assigneeId) in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchContractTest.java`
+- [x] T069 [P] [US4] Contract test: Verify PATCH `/api/tickets/{id}` requires `version`, allows `title`, `description`, `priority`, and `assigneeId` as individually optional fields, accepts a valid partial body such as `{ "version": 1, "title": "Updated title" }`, preserves omitted fields, rejects `status`, and rejects an explicitly null `assigneeId` in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchContractTest.java`
 
 ### Implementation for User Story 4
 
-- [ ] T070 [US4] Backend: Add `UpdateTicketRequest` requiring `version`; fields title/description/priority/`assigneeId` (non-null); reject if `status` present (`VALIDATION_ERROR`) in `backend/src/main/java/com/jiralite/tickets/api/dto/UpdateTicketRequest.java`
-- [ ] T071 [US4] Backend: Allow field edits only for OPEN, IN_PROGRESS, RESOLVED, REOPEN; CLOSED/CANCELLED → `TICKET_FROZEN`; failed update persists nothing in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T072 [US4] Backend: Optimistic version: mismatch → `STALE_VERSION` no store change; success → version +1 and `updatedAt` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T073 [US4] Backend: Reject null/empty assignee after create and assignee not in `ticket.productId` (`VALIDATION_ERROR`); roles do not add extra assignee rules; do not change `reporterId` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T074 [US4] Backend: Title/description same length/whitespace/no-trim rules as create in `backend/src/main/java/com/jiralite/tickets/service/TicketValidation.java`
-- [ ] T075 [US4] Backend: `PATCH /api/tickets/{id}` in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java` (controllers/repos MUST NOT set status)
-- [ ] T076 [P] [US4] Test: Successful field PATCH increments version by 1; failed/stale does not in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchVersionTest.java`
-- [ ] T077 [P] [US4] Test: Status in PATCH → `VALIDATION_ERROR` and unchanged status/fields in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchRejectsStatusTest.java`
-- [ ] T078 [P] [US4] Test: CLOSED/CANCELLED field PATCH → `TICKET_FROZEN`; blank title → `VALIDATION_ERROR` unchanged data in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchFrozenValidationTest.java`
-- [ ] T079 [US4] Test: Clear assignee and out-of-product assignee → `VALIDATION_ERROR`; product isolation 403 on PATCH in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchAssigneeIsolationTest.java`
+- [x] T070 [US4] Backend: Add `UpdateTicketRequest` for `PATCH /api/tickets/{id}`: `version` required; `title`, `description`, `priority`, and `assigneeId` each optional; PATCH may update one or more of those fields; omitted fields stay unchanged; do not treat the four editable fields as all mandatory; do not accept `status` (`status` present → `VALIDATION_ERROR`); `assigneeId` cannot be cleared/null; omitted `assigneeId` leaves the existing assignee unchanged. Example valid body: `{ "version": 1, "title": "Updated title" }` in `backend/src/main/java/com/jiralite/tickets/api/dto/UpdateTicketRequest.java`
+- [x] T071 [US4] Backend: Allow field edits only for OPEN, IN_PROGRESS, RESOLVED, REOPEN; CLOSED/CANCELLED → `TICKET_FROZEN`; failed update persists nothing in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T072 [US4] Backend: Optimistic version: mismatch → `STALE_VERSION` no store change; success → version +1 and `updatedAt` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T073 [US4] Backend: Reject null/empty assignee after create and assignee not in `ticket.productId` (`VALIDATION_ERROR`); roles do not add extra assignee rules; do not change `reporterId` in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T074 [US4] Backend: Title/description same length/whitespace/no-trim rules as create in `backend/src/main/java/com/jiralite/tickets/service/TicketValidation.java`
+- [x] T075 [US4] Backend: `PATCH /api/tickets/{id}` in `backend/src/main/java/com/jiralite/tickets/api/TicketController.java` (controllers/repos MUST NOT set status)
+- [x] T076 [P] [US4] Test: Successful field PATCH increments version by 1; failed/stale does not in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchVersionTest.java`
+- [x] T076A [P] [US4] Test: Partial PATCH with only one or a subset of title/description/priority/assigneeId changes only the supplied fields, preserves omitted fields, and increments version exactly once in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchPartialUpdateTest.java`
+- [x] T077 [P] [US4] Test: Status in PATCH → `VALIDATION_ERROR` and unchanged status/fields in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchRejectsStatusTest.java`
+- [x] T078 [US4] Test: Frozen CLOSED/CANCELLED ticket rejects field PATCH with TICKET_FROZEN, leaves ticket version unchanged, and creates no Activity in `backend/src/test/java/com/jiralite/tickets/api/TicketFrozenUpdateTest.java`
+- [x] T079 [US4] Test: Clear assignee and out-of-product assignee → `VALIDATION_ERROR`; product isolation 403 on PATCH in `backend/src/test/java/com/jiralite/tickets/api/TicketPatchAssigneeIsolationTest.java`
 
 **Checkpoint**: US4 independently testable (Activity write wired in Phase 14).
 
@@ -252,18 +253,18 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 ### Tests for User Story 6
 
-- [ ] T080 [P] [US6] Test: Contract `POST /api/tickets/{id}/status` with `version` and target `status` in `backend/src/test/java/com/jiralite/tickets/api/TicketStatusContractTest.java`
+- [x] T080 [P] [US6] Test: Contract `POST /api/tickets/{id}/status` with `version` and target `status` in `backend/src/test/java/com/jiralite/tickets/api/TicketStatusContractTest.java`
 
 ### Implementation for User Story 6
 
-- [ ] T081 [US6] Backend: Encode allowed edges only — OPEN→IN_PROGRESS|CANCELLED; IN_PROGRESS→RESOLVED|CANCELLED; RESOLVED→CLOSED|REOPEN; CLOSED→REOPEN; CANCELLED→REOPEN; REOPEN→IN_PROGRESS|CANCELLED — in `backend/src/main/java/com/jiralite/tickets/service/TicketStateMachine.java`
-- [ ] T082 [US6] Backend: Dedicated `changeStatus` on `TicketService`; controllers/repositories MUST NOT write status except through this operation in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T083 [US6] Backend: Add `ChangeStatusRequest` (`version`, target `status`) and `POST /api/tickets/{id}/status` in `backend/src/main/java/com/jiralite/tickets/api/dto/ChangeStatusRequest.java` and `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
-- [ ] T084 [US6] Backend: Success: status update, version +1, `updatedAt`; failure: no partial ticket write; stale version `STALE_VERSION`; membership 403; missing 404 in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T085 [US6] Test: Table-driven **every allowed** FR-013 transition succeeds in `backend/src/test/java/com/jiralite/tickets/service/TicketStateMachineAllowedTest.java`
-- [ ] T086 [US6] Test: Table-driven **every rejected** pair including all self-transitions and documented illegals (CLOSED→OPEN, RESOLVED→OPEN, CANCELLED→OPEN, IN_PROGRESS→CLOSED) → `INVALID_STATE_TRANSITION`, status unchanged in `backend/src/test/java/com/jiralite/tickets/service/TicketStateMachineRejectedTest.java`
-- [ ] T087 [P] [US6] Test: Unknown status string → `VALIDATION_ERROR`; create still OPEN never REOPEN in `backend/src/test/java/com/jiralite/tickets/api/TicketStatusValidationTest.java`
-- [ ] T088 [P] [US6] Test: Stale version on status POST → `STALE_VERSION` no change; REOPEN then field-edit allowed (same working rules as OPEN) in `backend/src/test/java/com/jiralite/tickets/api/TicketStatusVersionReopenTest.java`
+- [x] T081 [US6] Backend: Encode allowed edges only — OPEN→IN_PROGRESS|CANCELLED; IN_PROGRESS→RESOLVED|CANCELLED; RESOLVED→CLOSED|REOPEN; CLOSED→REOPEN; CANCELLED→REOPEN; REOPEN→IN_PROGRESS|CANCELLED — in `backend/src/main/java/com/jiralite/tickets/service/TicketStateMachine.java`
+- [x] T082 [US6] Backend: Dedicated `changeStatus` on `TicketService`; controllers/repositories MUST NOT write status except through this operation in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T083 [US6] Backend: Add `ChangeStatusRequest` (`version`, target `status`) and `POST /api/tickets/{id}/status` in `backend/src/main/java/com/jiralite/tickets/api/dto/ChangeStatusRequest.java` and `backend/src/main/java/com/jiralite/tickets/api/TicketController.java`
+- [x] T084 [US6] Backend: Success: status update, version +1, `updatedAt`; failure: no partial ticket write; stale version `STALE_VERSION`; membership 403; missing 404 in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T085 [US6] Test: Table-driven **every allowed** FR-013 transition succeeds in `backend/src/test/java/com/jiralite/tickets/service/TicketStateMachineAllowedTest.java`
+- [x] T086 [US6] Test: Table-driven **every rejected** pair including all self-transitions and documented illegals (CLOSED→OPEN, RESOLVED→OPEN, CANCELLED→OPEN, IN_PROGRESS→CLOSED) → `INVALID_STATE_TRANSITION`, status unchanged in `backend/src/test/java/com/jiralite/tickets/service/TicketStateMachineRejectedTest.java`
+- [x] T087 [P] [US6] Test: Unknown status string → `VALIDATION_ERROR`; create still OPEN never REOPEN in `backend/src/test/java/com/jiralite/tickets/api/TicketStatusValidationTest.java`
+- [x] T088 [P] [US6] Test: Stale version on status POST → `STALE_VERSION` no change; REOPEN then field-edit allowed (same working rules as OPEN) in `backend/src/test/java/com/jiralite/tickets/api/TicketStatusVersionReopenTest.java`
 
 **Checkpoint**: US6 independently testable.
 
@@ -275,12 +276,12 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Two comments on ticket A not on B; empty body 400; CLOSED 409.
 
-- [ ] T089 [P] [US5] Test: Contract GET/POST comments envelopes in `backend/src/test/java/com/jiralite/tickets/api/CommentContractTest.java`
-- [ ] T090 [US5] Backend: `GET /api/tickets/{id}/comments` chronological flat list; `POST` body `{ "body" }` only (no `authorId`) in `backend/src/main/java/com/jiralite/tickets/api/TicketCommentController.java`
-- [ ] T091 [US5] Backend: Allow comments on OPEN, IN_PROGRESS, RESOLVED, REOPEN; CLOSED/CANCELLED `TICKET_FROZEN`; empty/whitespace/over-200 `VALIDATION_ERROR`; no parent comment field in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
-- [ ] T092 [P] [US5] Test: Empty/whitespace and 201-char body rejected, nothing stored, no trim in `backend/src/test/java/com/jiralite/tickets/api/CommentValidationTest.java`
-- [ ] T093 [P] [US5] Test: CLOSED/CANCELLED comment `TICKET_FROZEN`; isolation 403; comments belong to one ticket only in `backend/src/test/java/com/jiralite/tickets/api/CommentFrozenIsolationTest.java`
-- [ ] T094 [US5] Test: Successful comment does **not** insert Activity in `backend/src/test/java/com/jiralite/tickets/api/CommentDoesNotCreateActivityTest.java`
+- [x] T089 [P] [US5] Test: Contract GET/POST comments envelopes in `backend/src/test/java/com/jiralite/tickets/api/CommentContractTest.java`
+- [x] T090 [US5] Backend: `GET /api/tickets/{id}/comments` chronological flat list; `POST` body `{ "body" }` only (no `authorId`) in `backend/src/main/java/com/jiralite/tickets/api/TicketCommentController.java`
+- [x] T091 [US5] Backend: Allow comments on OPEN, IN_PROGRESS, RESOLVED, REOPEN; CLOSED/CANCELLED `TICKET_FROZEN`; empty/whitespace/over-200 `VALIDATION_ERROR`; no parent comment field in `backend/src/main/java/com/jiralite/tickets/service/TicketServiceImpl.java`
+- [x] T092 [P] [US5] Test: Empty/whitespace and 201-char body rejected, nothing stored, no trim in `backend/src/test/java/com/jiralite/tickets/api/CommentValidationTest.java`
+- [x] T093 [P] [US5] Test: CLOSED/CANCELLED comment `TICKET_FROZEN`; isolation 403; comments belong to one ticket only in `backend/src/test/java/com/jiralite/tickets/api/CommentFrozenIsolationTest.java`
+- [x] T094 [US5] Test: Successful comment does **not** insert Activity in `backend/src/test/java/com/jiralite/tickets/api/CommentDoesNotCreateActivityTest.java`
 
 **Checkpoint**: US5 independently testable.
 
@@ -292,12 +293,12 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Multi-field PATCH → one Activity; status change → one Activity; failed PATCH → zero.
 
-- [ ] T095 [US4] Backend: After successful field PATCH, write one Activity (`field` e.g. `fields`) with `from`/`to` maps containing only changed keys (title, priority, assigneeId, …) in `backend/src/main/java/com/jiralite/tickets/service/ActivityRecorder.java`
-- [ ] T096 [US6] Backend: After successful status change, write one Activity (`field`=`status`) with `from`/`to` `{ "status": "..." }` in `backend/src/main/java/com/jiralite/tickets/service/ActivityRecorder.java`
-- [ ] T097 [US3] Backend: `GET /api/tickets/{id}/activity` chronological `ActivityResponse`; membership 403 / 404 in `backend/src/main/java/com/jiralite/tickets/api/TicketActivityController.java`
-- [ ] T098 [P] [US4] Test: Single-field vs multi-field PATCH each create exactly one Activity with only changed keys; failure creates none in `backend/src/test/java/com/jiralite/tickets/api/ActivityFieldUpdateTest.java`
-- [ ] T099 [P] [US6] Test: Successful status → one Activity; illegal/stale status → none in `backend/src/test/java/com/jiralite/tickets/api/ActivityStatusChangeTest.java`
-- [ ] T100 [US3] Test: Activity GET isolation; UI payload is stored `from`/`to` only (no extra history fields) in `backend/src/test/java/com/jiralite/tickets/api/ActivityGetIsolationTest.java`
+- [x] T095 [US4] Backend: After successful field PATCH, write one Activity (`field` e.g. `fields`) with `from`/`to` maps containing only changed keys (title, priority, assigneeId, …) in `backend/src/main/java/com/jiralite/tickets/service/ActivityRecorder.java`
+- [x] T096 [US6] Backend: After successful status change, write one Activity (`field`=`status`) with `from`/`to` `{ "status": "..." }` in `backend/src/main/java/com/jiralite/tickets/service/ActivityRecorder.java`
+- [x] T097 [US3] Backend: `GET /api/tickets/{id}/activity` chronological `ActivityResponse`; membership 403 / 404 in `backend/src/main/java/com/jiralite/tickets/api/TicketActivityController.java`
+- [x] T098 [P] [US4] Test: Single-field vs multi-field PATCH each create exactly one Activity with only changed keys; failure creates none in `backend/src/test/java/com/jiralite/tickets/api/ActivityFieldUpdateTest.java`
+- [x] T099 [P] [US6] Test: Successful status → one Activity; illegal/stale status → none in `backend/src/test/java/com/jiralite/tickets/api/ActivityStatusChangeTest.java`
+- [x] T100 [US3] Test: Activity GET isolation; UI payload is stored `from`/`to` only (no extra history fields) in `backend/src/test/java/com/jiralite/tickets/api/ActivityGetIsolationTest.java`
 
 **Checkpoint**: Detail can load comments + activity APIs.
 
@@ -309,10 +310,10 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Login then call `/api/products`; logout/expired token shows error.
 
-- [ ] T101 [US7] Frontend: API client attaches `Authorization: Bearer` and parses `{ message, code, status, data }` in `frontend/src/api/client.ts`
-- [ ] T102 [US7] Frontend: Login screen username/password → `POST /api/auth/login`; persist JWT for later calls in `frontend/src/pages/LoginPage.tsx` and `frontend/src/auth/session.ts`
-- [ ] T103 [US7] Frontend: On `AUTHENTICATION_FAILED` or missing JWT, do not treat session as signed in; show backend `message` in `frontend/src/auth/session.ts`
-- [ ] T104 [P] [US7] Test: Login success stores token; invalid credentials show error and no authenticated session in `frontend/src/auth/LoginPage.test.tsx`
+- [x] T101 [US7] Frontend: API client attaches `Authorization: Bearer` and parses `{ message, code, status, data }` in `frontend/src/api/client.ts`
+- [x] T102 [US7] Frontend: Login screen username/password → `POST /api/auth/login`; persist JWT for later calls in `frontend/src/pages/LoginPage.tsx` and `frontend/src/auth/session.ts`
+- [x] T103 [US7] Frontend: On `AUTHENTICATION_FAILED` or missing JWT, do not treat session as signed in; show backend `message` in `frontend/src/auth/session.ts`
+- [x] T104 [P] [US7] Test: Login success stores token; invalid credentials show error and no authenticated session in `frontend/src/auth/LoginPage.test.tsx`
 
 ---
 
@@ -322,13 +323,13 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Default payload page 0 size 20; UI shows page 1; filters AND/OR; no other-product rows.
 
-- [ ] T105 [US2] Frontend: List page columns title, status, priority, assignee, reporter, version, product in `frontend/src/pages/TicketListPage.tsx`
-- [ ] T106 [US2] Frontend: Always send list JSON including `searchKey` (null when unused); empty filter arrays; field `reporter` never `reportee` in `frontend/src/api/tickets.ts`
-- [ ] T107 [US2] Frontend: Map UI page 1 ↔ API page 0; size dropdown bottom-right; no invented backend max size in `frontend/src/pages/TicketListPage.tsx`
-- [ ] T108 [US2] Frontend: Multi-select filters status/assignee/reporter/user/product; options from `GET /api/users` and `GET /api/products`; status = six FR-017 values in `frontend/src/components/TicketFilters.tsx`
-- [ ] T109 [US2] Frontend: Keyword search (no auto-trim); empty list uses envelope empty `content` messaging in `frontend/src/pages/TicketListPage.tsx`
-- [ ] T110 [P] [US2] Test: Default request page 0 size 20; UI label page 1; `searchKey` null omitted-or-null behavior in `frontend/src/pages/TicketListPage.test.tsx`
-- [ ] T111 [P] [US2] Test: Combined filters + search; isolation (fixture does not render other-product tickets) in `frontend/src/pages/TicketListFilters.test.tsx`
+- [x] T105 [US2] Frontend: List page columns title, status, priority, assignee, reporter, version, product in `frontend/src/pages/TicketListPage.tsx`
+- [x] T106 [US2] Frontend: Always send list JSON including `searchKey` (null when unused); empty filter arrays; field `reporter` never `reportee` in `frontend/src/api/tickets.ts`
+- [x] T107 [US2] Frontend: Map UI page 1 ↔ API page 0; size dropdown bottom-right; no invented backend max size in `frontend/src/pages/TicketListPage.tsx`
+- [x] T108 [US2] Frontend: Multi-select filters status/assignee/reporter/user/product; options from `GET /api/users` and `GET /api/products`; status = six FR-017 values in `frontend/src/components/TicketFilters.tsx`
+- [x] T109 [US2] Frontend: Keyword search (no auto-trim); empty list uses envelope empty `content` messaging in `frontend/src/pages/TicketListPage.tsx`
+- [x] T110 [P] [US2] Test: Default request page 0 size 20; UI label page 1; `searchKey` null omitted-or-null behavior in `frontend/src/pages/TicketListPage.test.tsx`
+- [x] T111 [P] [US2] Test: Combined filters + search; isolation (fixture does not render other-product tickets) in `frontend/src/pages/TicketListFilters.test.tsx`
 
 ---
 
@@ -338,12 +339,12 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Open known ticket; tabs; 403/404 messaging without leaking fields.
 
-- [ ] T112 [US3] Frontend: Detail view id, title, description, priority, status, assignee, reporter, version, product, timestamps in `frontend/src/pages/TicketDetailPage.tsx`
-- [ ] T113 [US3] Frontend: Adjacent Comments and Activity tabs; Activity renders `from`/`to` values only in `frontend/src/components/CommentsActivityTabs.tsx`
-- [ ] T114 [US5] Frontend: Flat comment list; no reply-to-comment action; composer posts `{ body }` in `frontend/src/components/CommentList.tsx`
-- [ ] T115 [US3] Frontend: TICKET_NOT_FOUND / PRODUCT_ACCESS_DENIED show i18n `message`; do not display ticket payload in `frontend/src/pages/TicketDetailPage.tsx`
-- [ ] T116 [P] [US3] Test: Detail renders fields + adjacent tabs; comments not listed as activity in `frontend/src/pages/TicketDetailPage.test.tsx`
-- [ ] T117 [P] [US5] Test: No reply control in comments UI in `frontend/src/components/CommentList.test.tsx`
+- [x] T112 [US3] Frontend: Detail view id, title, description, priority, status, assignee, reporter, version, product, timestamps in `frontend/src/pages/TicketDetailPage.tsx`
+- [x] T113 [US3] Frontend: Adjacent Comments and Activity tabs; Activity renders `from`/`to` values only in `frontend/src/components/CommentsActivityTabs.tsx`
+- [x] T114 [US5] Frontend: Flat comment list; no reply-to-comment action; composer posts `{ body }` in `frontend/src/components/CommentList.tsx`
+- [x] T115 [US3] Frontend: TICKET_NOT_FOUND / PRODUCT_ACCESS_DENIED show i18n `message`; do not display ticket payload in `frontend/src/pages/TicketDetailPage.tsx`
+- [x] T116 [P] [US3] Test: Detail renders fields + adjacent tabs; comments not listed as activity in `frontend/src/pages/TicketDetailPage.test.tsx`
+- [x] T117 [P] [US5] Test: No reply control in comments UI in `frontend/src/components/CommentList.test.tsx`
 
 ---
 
@@ -353,13 +354,13 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Create appears OPEN in list; legal status move; illegal status not submitted.
 
-- [ ] T118 [US1] Frontend: Create form title, optional description, priority dropdown (not free-typed), optional assignee, product picker iff >1 membership in `frontend/src/pages/TicketCreatePage.tsx`
-- [ ] T119 [US1] Frontend: One membership → no product picker (server uses that product); zero memberships → cannot submit, meaningful explanation in `frontend/src/pages/TicketCreatePage.tsx`
-- [ ] T120 [US4] Frontend: Field edit form (title, description, priority, assignee) calls PATCH without `status`; includes current `version` in `frontend/src/pages/TicketEditForm.tsx`
-- [ ] T121 [US6] Frontend: Status control uses only `POST /api/tickets/{id}/status` with current `version` and target status in `frontend/src/components/StatusControl.tsx`
-- [ ] T122 [P] [US1] Test: Successful create flow; default priority MEDIUM; omitted assignee UX in `frontend/src/pages/TicketCreatePage.test.tsx`
-- [ ] T123 [P] [US4] Test: Successful field update flow in `frontend/src/pages/TicketEditForm.test.tsx`
-- [ ] T124 [P] [US6] Test: Successful allowed status-change flow in `frontend/src/components/StatusControl.test.tsx`
+- [x] T118 [US1] Frontend: Create form title, optional description, priority dropdown (not free-typed), optional assignee, product picker iff >1 membership in `frontend/src/pages/TicketCreatePage.tsx`
+- [x] T119 [US1] Frontend: One membership → no product picker (server uses that product); zero memberships → cannot submit, meaningful explanation in `frontend/src/pages/TicketCreatePage.tsx`
+- [x] T120 [US4] Frontend: Field edit form (title, description, priority, assignee) calls PATCH without `status`; includes current `version` in `frontend/src/pages/TicketEditForm.tsx`
+- [x] T121 [US6] Frontend: Status control uses only `POST /api/tickets/{id}/status` with current `version` and target status in `frontend/src/components/StatusControl.tsx`
+- [x] T122 [P] [US1] Test: Successful create flow; default priority MEDIUM; omitted assignee UX in `frontend/src/pages/TicketCreatePage.test.tsx`
+- [x] T123 [P] [US4] Test: Successful field update flow in `frontend/src/pages/TicketEditForm.test.tsx`
+- [x] T124 [P] [US6] Test: Successful allowed status-change flow in `frontend/src/components/StatusControl.test.tsx`
 
 ---
 
@@ -369,19 +370,19 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Independent test**: Spy on fetch — blank title/comment/illegal status produce **zero** matching API calls.
 
-- [ ] T125 [US1] Frontend: Empty/whitespace title and title > 40 / description > 1000: show validation, **do not** call create in `frontend/src/pages/TicketCreatePage.tsx`
-- [ ] T126 [US1] Frontend: Multi-product create without product: **do not** submit in `frontend/src/pages/TicketCreatePage.tsx`
-- [ ] T127 [US4] Frontend: Empty/whitespace title on edit: **do not** call PATCH in `frontend/src/pages/TicketEditForm.tsx`
-- [ ] T128 [US5] Frontend: Empty/whitespace comment: **do not** POST comments in `frontend/src/components/CommentList.tsx`
-- [ ] T129 [US6] Frontend: Illegal transitions including self-transitions and CLOSED/RESOLVED/CANCELLED → OPEN, IN_PROGRESS → CLOSED: show error, **do not** call status API in `frontend/src/components/StatusControl.tsx`
-- [ ] T130 [US4] Frontend: CLOSED/CANCELLED: hide/disable field save and comment composer; only reopen via status operation in `frontend/src/pages/TicketDetailPage.tsx`
-- [ ] T131 [US4] Frontend: `STALE_VERSION`: show backend `message`, then GET latest ticket; never overwrite with stale form in `frontend/src/pages/TicketEditForm.tsx`
-- [ ] T132 Frontend: API down/timeout/unexpected: do not mark success; generic user-facing message; keep existing data; retry available; recognized codes show backend `message` in `frontend/src/api/client.ts`
-- [ ] T133 [P] [US1] Test: No-submit create validation (empty title, over-length, missing product when many memberships) in `frontend/src/pages/TicketCreateValidation.test.tsx`
-- [ ] T134 [P] [US5] Test: No-submit empty comment in `frontend/src/components/CommentValidation.test.tsx`
-- [ ] T135 [P] [US6] Test: Illegal status blocked before API call in `frontend/src/components/StatusControlNoSubmit.test.tsx`
-- [ ] T136 [P] [US4] Test: CLOSED/CANCELLED UI restrictions; stale-version message then reload in `frontend/src/pages/TicketStaleFrozen.test.tsx`
-- [ ] T137 [P] Test: Backend error `message` display vs generic unexpected/network error and preserved UI data in `frontend/src/api/client.error.test.ts`
+- [x] T125 [US1] Frontend: Empty/whitespace title and title > 40 / description > 1000: show validation, **do not** call create in `frontend/src/pages/TicketCreatePage.tsx`
+- [x] T126 [US1] Frontend: Multi-product create without product: **do not** submit in `frontend/src/pages/TicketCreatePage.tsx`
+- [x] T127 [US4] Frontend: Empty/whitespace title on edit: **do not** call PATCH in `frontend/src/pages/TicketEditForm.tsx`
+- [x] T128 [US5] Frontend: Empty/whitespace comment: **do not** POST comments in `frontend/src/components/CommentList.tsx`
+- [x] T129 [US6] Frontend: Validate against the complete FR-013 matrix (OPEN→IN_PROGRESS, OPEN→CANCELLED, IN_PROGRESS→RESOLVED, IN_PROGRESS→CANCELLED, RESOLVED→CLOSED, RESOLVED→REOPEN, CLOSED→REOPEN, CANCELLED→REOPEN, REOPEN→IN_PROGRESS, REOPEN→CANCELLED); all other pairs including every self-transition are illegal; show an appropriate error and **do not** call the status API for an illegal transition; backend remains authoritative in `frontend/src/components/StatusControl.tsx`
+- [x] T130 [US4][US5] Frontend: CLOSED/CANCELLED: hide/disable field save and comment composer; only reopen via status operation in `frontend/src/pages/TicketDetailPage.tsx`
+- [x] T131 [US4] Frontend: `STALE_VERSION`: show backend `message`, then GET latest ticket; never overwrite with stale form in `frontend/src/pages/TicketEditForm.tsx`
+- [x] T132 Frontend: API down/timeout/unexpected: do not mark success; generic user-facing message; keep existing data; retry available; recognized codes show backend `message` in `frontend/src/api/client.ts`
+- [x] T133 [P] [US1] Test: No-submit create validation (empty title, over-length, missing product when many memberships) in `frontend/src/pages/TicketCreateValidation.test.tsx`
+- [x] T134 [P] [US5] Test: No-submit empty comment in `frontend/src/components/CommentValidation.test.tsx`
+- [x] T135 [US6] Frontend: Test that every illegal status transition from the approved state-transition matrix, including self-transitions and at least one unlisted transition, is blocked before the status API is called in `frontend/src/components/StatusControl.test.tsx`
+- [x] T136 [P] [US4] Test: CLOSED/CANCELLED UI restrictions; stale-version message then reload in `frontend/src/pages/TicketStaleFrozen.test.tsx`
+- [x] T137 [P] Test: Backend error `message` display vs generic unexpected/network error and preserved UI data in `frontend/src/api/client.error.test.ts`
 
 ---
 
@@ -389,11 +390,11 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Purpose**: Close coverage gaps not already proven in story phases. Do not duplicate passing tests; add only missing cases.
 
-- [ ] T138 Test: Backend FR-019 matrix — state machine, CLOSED/CANCELLED immutability, stale version, assignee default, blank title, empty comments, product isolation, missing product on create, unknown enums, self-transitions, assignee product membership — in `backend/src/test/java/com/jiralite/tickets/TicketFr019CoverageTest.java`
-- [ ] T139 Test: Security — unauthenticated ticket/list/create/patch/status/comment/activity/catalog calls `AUTHENTICATION_FAILED` in `backend/src/test/java/com/jiralite/tickets/api/SecurityAuthenticationTest.java`
-- [ ] T140 Test: Membership isolation on list, get, patch, status, comments, activity (403, no payload) in `backend/src/test/java/com/jiralite/tickets/api/MembershipIsolationSuiteTest.java`
-- [ ] T141 Test: Envelope + HTTP mapping for all listed codes including `AUTHENTICATION_FAILED` not in ticket-domain list in `backend/src/test/java/com/jiralite/tickets/error/ErrorEnvelopeContractTest.java`
-- [ ] T142 Test: Frontend FR-038 checklist file covering create validation, empty title, comment validation, priority selection, one-vs-many product, illegal status no-call, backend errors, stale version, frozen UI, list filters/search, successful create/update/status in `frontend/src/fr038/Fr038Coverage.test.tsx`
+- [x] T138 Test: Backend FR-019 matrix — state machine, CLOSED/CANCELLED immutability, stale version, assignee default, blank title, empty comments, product isolation, missing product on create, unknown enums, self-transitions, assignee product membership — in `backend/src/test/java/com/jiralite/tickets/TicketFr019CoverageTest.java`
+- [x] T139 Test: Security — unauthenticated ticket/list/create/patch/status/comment/activity/catalog calls `AUTHENTICATION_FAILED` in `backend/src/test/java/com/jiralite/tickets/api/SecurityAuthenticationTest.java`
+- [x] T140 Test: Membership isolation on list, get, patch, status, comments, activity (403, no payload) in `backend/src/test/java/com/jiralite/tickets/api/MembershipIsolationSuiteTest.java`
+- [x] T141 Test: Envelope + HTTP mapping for all listed codes including `AUTHENTICATION_FAILED` not in ticket-domain list in `backend/src/test/java/com/jiralite/tickets/error/ErrorEnvelopeContractTest.java`
+- [x] T142 Test: Frontend FR-038 checklist file covering create validation, empty title, comment validation, priority selection, one-vs-many product, illegal status no-call, backend errors, stale version, frozen UI, list filters/search, successful create/update/status in `frontend/src/fr038/Fr038Coverage.test.tsx`
 
 ---
 
@@ -401,10 +402,10 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 **Purpose**: Compose runs PostgreSQL, MongoDB, backend, frontend/Nginx. Nginx serves SPA and proxies `/api`. No Redis/Kafka.
 
-- [ ] T143 Infrastructure: Compose services postgres, mongodb, backend, frontend in `docker-compose.yml` (env credentials, no secrets in git)
-- [ ] T144 Infrastructure: Backend image uses `backend/Dockerfile`
-- [ ] T145 Frontend: Production Nginx static files + `/api` reverse proxy in `frontend/nginx.conf` and `frontend/Dockerfile`
-- [ ] T146 Test: Compose health — backend `/actuator/health`, Nginx origin serves SPA in `specs/001-ticket-management/quickstart.md` (manual) and optional `backend/src/test/java/com/jiralite/tickets/ActuatorHealthTest.java`
+- [x] T143 Infrastructure: Compose services postgres, mongodb, backend, frontend in `docker-compose.yml` (env credentials, no secrets in git)
+- [x] T144 Infrastructure: Backend image uses `backend/Dockerfile`
+- [x] T145 Frontend: Production Nginx static files + `/api` reverse proxy in `frontend/nginx.conf` and `frontend/Dockerfile`
+- [x] T146 Test: Compose health — backend `/actuator/health`, Nginx origin serves SPA in `specs/001-ticket-management/quickstart.md` (manual) and optional `backend/src/test/java/com/jiralite/tickets/ActuatorHealthTest.java`
 
 ---
 
@@ -414,8 +415,8 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 
 - [ ] T147 Test: Execute backend quickstart steps 1–10 (create, list payload, isolation, status, frozen, comments, stale version, restart persistence Mongo vs Postgres) using `specs/001-ticket-management/quickstart.md`
 - [ ] T148 Test: Execute frontend quickstart steps 1–6 (no-submit validation, dropdowns, filters, detail tabs, frozen/reopen) against Nginx origin in `specs/001-ticket-management/quickstart.md`
-- [ ] T149 Infrastructure: Confirm restart leaves tickets/comments/activity in MongoDB and users/products/memberships in PostgreSQL (`docker-compose.yml` volumes)
-- [ ] T150 Polish: Run `cd backend && ./gradlew test` and frontend test script; fix only defects vs approved spec (do not add out-of-scope features)
+- [x] T149 Infrastructure: Confirm restart leaves tickets/comments/activity in MongoDB and users/products/memberships in PostgreSQL (`docker-compose.yml` volumes)
+- [x] T150 Polish: Run `cd backend && ./gradlew test` and frontend test script; fix only defects vs approved spec (do not add out-of-scope features)
 
 ---
 
@@ -459,7 +460,7 @@ Suggested MVP after Phase 2: **US7 (backend) + US1** (authenticated create). Ful
 ### Parallel Opportunities
 
 - T004/T005; T011–T014; T018–T021; T028/T029; T037/T038
-- US1 tests T051–T054; US2 T061–T062; US4 T076–T078; US6 T087–T088; US5 T092–T093; Activity T098–T099
+- US1 tests T051–T054; US2 T061–T062; US4 T076–T078 and T076A; US6 T087–T088; US5 T092–T093; Activity T098–T099
 - Frontend tests marked `[P]` within a phase
 - After foundation, backend US5 comments vs US6 status can proceed in parallel on different files (`TicketCommentController.java` vs `TicketStateMachine.java`)
 
