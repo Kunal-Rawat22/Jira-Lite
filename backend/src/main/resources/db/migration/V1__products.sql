@@ -1,0 +1,5 @@
+CREATE TABLE products (
+    id UUID PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMPTZ NOT NULL
+);

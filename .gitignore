@@ -38,6 +38,7 @@ buildNumber.properties
 # Gradle
 .gradle/
 build/
+backend/bin/
 !gradle/wrapper/gradle-wrapper.jar
 
 # Node

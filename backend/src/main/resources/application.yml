@@ -10,9 +10,18 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
+  flyway:
+    enabled: true
   data:
     mongodb:
       uri: ${MONGO_URI:mongodb://localhost:27017/support_ticket}
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+jwt:
+  secret: ${JWT_SECRET:local-dev-only-jwt-secret-key-must-be-32b!!}
+  ttl-ms: 1800000
 
 management:
   endpoints:

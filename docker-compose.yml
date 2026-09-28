@@ -60,6 +60,7 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       MONGO_URI: mongodb://mongodb:27017/support_ticket
+      JWT_SECRET: local-dev-only-jwt-secret-key-must-be-32b!!
 
     depends_on:
       postgres:

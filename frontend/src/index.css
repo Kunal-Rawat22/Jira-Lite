@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jira-navy: #172b4d;
+  --color-jira-blue: #0052cc;
+  --color-jira-blue-hover: #0065ff;
+  --color-jira-canvas: #f7f8f9;
+  --color-jira-border: #dfe1e6;
+  --color-jira-muted: #6b778c;
+  --color-jira-text: #172b4d;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-jira-text);
+  background: var(--color-jira-canvas);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
