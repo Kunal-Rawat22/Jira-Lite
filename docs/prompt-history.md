@@ -103,3 +103,31 @@ Each entry **must** include **Mode**: `Plan`, `Ask`, `Debug`, `Agent`, or `Plan 
 - Postgres 16 via Compose for later API work; no app services yet.
 
 See [decisions.md](decisions.md).
+
+## 2026-09-25 — Spec Kit plan: ticket management stack
+
+**Mode:** Plan
+
+**Prompt:** `/speckit-plan` with Java 21, Spring Boot, Spring Data JPA, Bean Validation, PostgreSQL, MongoDB, JUnit 5, Mockito, MockMvc; React + TypeScript SPA; Nginx production container; Compose (Postgres, Mongo, backend, frontend/Nginx); Controller → Service interface → implementation → Repository; DTOs only; dedicated status operation + state machine; no Redis/Kafka.
+
+**Decisions captured:**
+
+- Feature design lives under `specs/001-ticket-management/` (`plan.md`, `research.md`, `data-model.md`, `contracts/rest-api.md`, `quickstart.md`).
+- Status changes: `POST /api/tickets/{id}/status` only; PATCH is fields-only.
+- Tickets/comments/activity in MongoDB; users/products/memberships in PostgreSQL.
+- Ratified `spec/` was **not** overwritten (lifecycle, storage, and Next.js still differ); human review required before `spec/` merge.
+
+## 2026-09-25 — MongoDB in Docker Compose
+
+**Mode:** Plan then Agent
+
+**Prompt:** Update docker-compose and Dockerfiles to integrate MongoDB.
+
+**Decisions captured:**
+
+- Compose service `mongodb` (`mongo:7`, port 27017, volume `mongodb_data`, unauthenticated local URI, `mongosh` healthcheck).
+- Backend waits on healthy Postgres and Mongo; `MONGO_URI=mongodb://mongodb:27017/support_ticket`.
+- `application.yml` maps `spring.data.mongodb.uri` from `MONGO_URI` (localhost default for host `bootRun`). No Spring Data Mongo starter yet.
+- Backend/frontend Dockerfiles unchanged (no Mongo client in the JVM image).
+
+

@@ -23,6 +23,27 @@ services:
       retries: 5
 
 
+  mongodb:
+    image: mongo:7
+    container_name: support_ticket_mongodb
+    restart: unless-stopped
+
+    environment:
+      MONGO_INITDB_DATABASE: support_ticket
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
   backend:
     build:
       context: ./backend
@@ -38,9 +59,12 @@ services:
       DB_URL: jdbc:postgresql://postgres:5432/support_ticket
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
+      MONGO_URI: mongodb://mongodb:27017/support_ticket
 
     depends_on:
       postgres:
+        condition: service_healthy
+      mongodb:
         condition: service_healthy
 
     healthcheck:
@@ -76,3 +100,4 @@ services:
 
 volumes:
   postgres_data:
+  mongodb_data:

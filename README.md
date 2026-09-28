@@ -28,7 +28,7 @@ See `docs/ai-context-strategy.md` for which files to load for a given task.
 
 ## Run
 
-One command starts Postgres, the API, and Next.js:
+One command starts Postgres, MongoDB, the API, and Next.js:
 
 ```bash
 docker compose up --build
@@ -41,10 +41,10 @@ Use `--build` after code changes. Stop with `Ctrl+C`, or `docker compose up --bu
 
 ### Optional: run apps on the host
 
-If you prefer Gradle/npm locally (Postgres still via Compose):
+If you prefer Gradle/npm locally (Postgres and MongoDB still via Compose):
 
 ```bash
-docker compose up -d postgres
+docker compose up -d postgres mongodb
 cd backend && ./gradlew bootRun
 cd frontend && npm install && npm run dev
 ```
