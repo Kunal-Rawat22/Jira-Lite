@@ -142,5 +142,18 @@ See [decisions.md](decisions.md).
 - New `/preview-merge-pr`: review diff, `./gradlew test` + `npm run build` on the PR head, `gh pr merge --merge` into the PR base, then pull that base locally.
 - GitHub PRs are the merge-request equivalent. `review-pr` remains review-only.
 
+## 2026-09-28 — Track Spec Kit specs and SpecStory history
+
+**Mode:** Agent
+
+**Prompt:** `/commit-and-push` include skills/documentation, specs/*, .specstory/*, .cursor/*
+
+**Decisions captured:**
+
+- Feature working papers under `specs/001-ticket-management/` are in git.
+- Companion skill `.cursor/skills/sync-spec-from-speckit/` and a pointer from `skills/documentation/skill.md`.
+- SpecStory session markdown under `.specstory/history/` is tracked (root `.gitignore` no longer ignores those dumps).
+
+
 
 
